@@ -1,5 +1,4 @@
 import { useState } from "react";
-import CrossIcon from "./components/Icons/CrossIcon";
 import Moon from "./components/Icons/Moon";
 import Form from "./components/Form";
 import Articles from "./components/Articles";
@@ -7,9 +6,14 @@ import Articles from "./components/Articles";
 const App = () =>{
 
   const [fill, setFill] = useState("#FFF");
-  const [todos, setTodos] = useState(["Compete javascript Course", "I dont know man"]);
+  const [todos, setTodos] = useState([]);
 
-
+  const handleForm = (e) =>{
+    e.preventDefault();
+    const newTodo = e.target.todo.value;
+    setTodos([...todos, newTodo]);
+    e.target.reset();
+  }
 
 
   const handleFillButton = () =>{
@@ -27,7 +31,7 @@ const App = () =>{
     </h1>
     <button onClick={handleFillButton}><Moon fill={fill}/></button>
     </div>
-    <Form />
+    <Form handleForm={handleForm}/>
     </header>
 
     <main className="container mx-auto mt-8 px-4">
@@ -36,7 +40,7 @@ const App = () =>{
     
     <Articles todos={todos}/>
     <section className="flex justify-between px-4 py-4">
-      <span className="text-gray-400">5 items left</span>
+      <span className="text-gray-400">{todos.length} items left</span>
       <button className="text-gray-400">Clear completed</button>
     </section>
     </div>
