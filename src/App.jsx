@@ -1,20 +1,54 @@
-import { useState } from "react";
-import Moon from "./components/Icons/Moon";
+import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import Articles from "./components/Articles";
+import Header from "./components/Header";
+import TodoComputed from "./components/TodoComputed";
+import Filter from "./components/Filter";
+
+const initialState = JSON.parse(localStorage.getItem("todos")) || [];
 
 const App = () =>{
 
-  const [fill, setFill] = useState("#FFF");
-  const [todos, setTodos] = useState([]);
+  const [fill, setFill] = useState("#000");
+  const [todos, setTodos] = useState(initialState);
+  const [filter, setFilter] = useState("all");
+
+  useEffect(()=>{
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const handleForm = (e) =>{
     e.preventDefault();
-    const newTodo = e.target.todo.value;
+    const title = e.target.todo.value;
+
+    if(title.trim() == ""){
+      e.target.reset();
+      return alert("Rellena el todo bro")
+    }
+
+    const isIn = todos.some(todo=>todo.title === title)
+    if(isIn){
+      e.target.reset();
+      return alert("Ya existe ese Todo")
+    }
+
+    const newTodo = {
+      id: Date.now(),
+      title,
+      completed: false
+    }
     setTodos([...todos, newTodo]);
     e.target.reset();
   }
 
+  const handleFilter = () =>{
+    switch(filter){
+      case "all": return todos;
+      case "active": return todos.filter(todo => !todo.completed);
+      case "completed": return todos.filter(todo => todo.completed);
+      default: return todos
+    }
+  }
 
   const handleFillButton = () =>{
     setFill((prev)=> (prev === "#FFF" ? "#000" : "#FFF"))
@@ -22,37 +56,27 @@ const App = () =>{
 
   return (
     <>
-    <div className="min-h-screen bg-[url('./assets/images/bg-mobile-light.jpg')] bg-no-repeat bg-contain bg-gray-300">
+    <div className={`${fill === "#000" ? "min-h-screen bg-[url('./assets/images/bg-mobile-light.jpg')] bg-no-repeat bg-cover bg-gray-300" : "min-h-screen bg-[url('./assets/images/bg-mobile-dark.jpg')] bg-no-repeat bg-cover bg-gray-300"}`}>
 
-    <header className="container mx-auto px-4 pt-8">
-   <div className="flex justify-between"> 
-    <h1 className="uppercase text-white text-2xl font-semibold tracking-[0.5em]">
-      Todo
-    </h1>
-    <button onClick={handleFillButton}><Moon fill={fill}/></button>
-    </div>
-    <Form handleForm={handleForm}/>
-    </header>
+    <Header handleFillButton={handleFillButton} fill={fill} />
 
     <main className="container mx-auto mt-8 px-4">
-    <div className="bg-white rounded-md [&>article]:p-4">
-
-    
-    <Articles todos={todos}/>
-    <section className="flex justify-between px-4 py-4">
-      <span className="text-gray-400">{todos.length} items left</span>
-      <button className="text-gray-400">Clear completed</button>
-    </section>
-    </div>
-    </main>
-    <section className="container mx-auto px-4 mt-8">
-      <div className="bg-white p-4 rounded-md flex justify-center gap-4">
-      <button className="text-blue-500">All </button>
-      <button className="hover:text-blue-500">Active</button>
-      <button className="hover:text-blue-500">Completed</button>
+      
+      <Form handleForm={handleForm}/>
+      
+      <div className="bg-white rounded-t-md [&>article]:p-4 mt-8">
+        <Articles todos={handleFilter()} setTodos={setTodos}/>
       </div>
-    </section>
-    <p className="text-center">Drag and Drop</p>
+      
+      <TodoComputed todos={todos} setTodos={setTodos}/>
+      
+      <Filter setFilter={setFilter} filter={filter}/>
+    
+    </main>
+      <footer className="mt-8 text-center">
+       <p>Drag and Drop</p>
+      </footer>
+    
     </div>
     </>
   )
