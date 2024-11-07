@@ -24,7 +24,8 @@ const App = () =>{
     if(title.trim() == ""){
       e.target.reset();
       return alert("Rellena el todo bro")
-    }
+    };
+    
 
     const isIn = todos.some(todo=>todo.title === title)
     if(isIn){
@@ -74,7 +75,7 @@ const App = () =>{
     
     </main>
       <footer className="mt-8 text-center">
-       <p>Drag and Drop</p>
+       <p>Martino derechos reservados</p>
       </footer>
     
     </div>
