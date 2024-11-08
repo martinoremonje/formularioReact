@@ -9,6 +9,8 @@ const initialState = JSON.parse(localStorage.getItem("todos")) || [];
 
 const App = () =>{
 
+  //CREAR UN NUEVO TODO, SETTODO PARA LA CASA CREAR EL HANDLEFORM2 Y CREAR EL INPUT
+  
   const [fill, setFill] = useState("#000");
   const [todos, setTodos] = useState(initialState);
   const [filter, setFilter] = useState("all");
