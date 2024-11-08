@@ -55,6 +55,8 @@ const App = () =>{
     }
   }
 
+  const filteredTodos = handleFilter();
+
   const handleFillButton = () =>{
     setFill((prev)=> (prev === "#FFF" ? "#000" : "#FFF"))
   };
@@ -70,7 +72,7 @@ const App = () =>{
       <Form handleForm={handleForm}/>
       
       <div className="bg-white rounded-t-md [&>article]:p-4 mt-8">
-        <Articles todos={handleFilter()} setTodos={setTodos}/>
+      <Articles todos={filteredTodos} todosOriginal={todos} setTodos={setTodos} />
       </div>
       
       <TodoComputed todos={todos} setTodos={setTodos}/>
