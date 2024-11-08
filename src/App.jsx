@@ -22,6 +22,7 @@ const App = () =>{
   const handleForm = (e) =>{
     e.preventDefault();
     const title = e.target.todo.value;
+    const value = e.target.category.value;
 
     if(title.trim() == ""){
       e.target.reset();
@@ -38,6 +39,7 @@ const App = () =>{
     const newTodo = {
       id: Date.now(),
       title,
+      value,
       completed: false
     }
     setTodos([...todos, newTodo]);
@@ -47,8 +49,8 @@ const App = () =>{
   const handleFilter = () =>{
     switch(filter){
       case "all": return todos;
-      case "active": return todos.filter(todo => !todo.completed);
-      case "completed": return todos.filter(todo => todo.completed);
+      case "active": return todos.filter(todo => todo.value === "home");
+      case "completed": return todos.filter(todo => todo.value === "work");
       default: return todos
     }
   }
