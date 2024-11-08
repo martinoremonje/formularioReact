@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Form = ({ handleForm }) => {
+    // Forzar el enfoque en el campo de entrada después de seleccionar una opción
     const inputRef = React.useRef(null);
 
     const handleCategoryChange = () => {
