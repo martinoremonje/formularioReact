@@ -1,8 +1,8 @@
-const Form = ({ handleForm }) => {
+const Form = ({ handleForm, fill }) => {
     return (
-        <form onSubmit={handleForm} className="flex rounded-md bg-white overflow-hidden py-3 gap-4 items-center px-4">
+        <form onSubmit={handleForm} className={`flex rounded-md bg-white overflow-hidden py-3 gap-4 items-center px-4 transition-all duration-1000 ${fill !== "#000" ? "bg-gray-800 text-white " : "text-gray-600"}`}>
             <button 
-                type="submit"  // Cambiar a "submit" para que envíe el formulario
+                type="submit"  
                 className="px-2 py-1 rounded bg-blue-500 text-white"
             >
                 Add
@@ -11,7 +11,7 @@ const Form = ({ handleForm }) => {
                 name="todo" 
                 type="text" 
                 placeholder="Crea una tarea" 
-                className="w-full text-gray-400 outline-none" 
+                className={`w-full text-gray-400 outline-none transition-all duration-1000 ${fill !== "#000" ? "bg-gray-800 text-white" : "text-gray-600"}`} 
             />
             <select name="category" className="text-gray-400 border-none bg-transparent outline-none">
                 <option value="home">Home</option>

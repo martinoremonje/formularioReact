@@ -67,17 +67,17 @@ const App = () =>{
 
     <Header handleFillButton={handleFillButton} fill={fill} />
 
-    <main className="container mx-auto mt-8 px-4">
+    <main className="container mx-auto mt-8 px-4 md:max-w-xl ">
       
-      <Form handleForm={handleForm}/>
+      <Form handleForm={handleForm} fill={fill}/>
       
       <div className="bg-white rounded-t-md [&>article]:p-4 mt-8 ">
-      <Articles todos={filteredTodos} todosOriginal={todos} setTodos={setTodos} />
+      <Articles todos={filteredTodos} todosOriginal={todos} setTodos={setTodos} fill={fill}/>
       </div>
       
-      <TodoComputed todos={todos} setTodos={setTodos}/>
+      <TodoComputed todos={todos} setTodos={setTodos} fill={fill}/>
       
-      <Filter setFilter={setFilter} filter={filter}/>
+      <Filter setFilter={setFilter} filter={filter} fill={fill}/>
     
     </main>
       <footer className="mt-8 text-center">

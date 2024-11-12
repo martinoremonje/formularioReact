@@ -1,11 +1,11 @@
 import CheckIcon from "./Icons/Check";
 import CrossIcon from "./Icons/CrossIcon"
 
-const Articles = ({ todos, todosOriginal, setTodos }) => {
+const Articles = ({ todos, todosOriginal, setTodos, fill }) => {
     return (
         <>
             {todos.map((e, index) => (
-                <article key={index} className="flex gap-4 border-b border-b-gray-400">
+                <article key={index} className={`flex gap-4 border-b border-b-gray-400 ${fill !== "#000" ? "bg-gray-800 text-white transition-all duration-1000" : "text-gray-600 transition-all duration-1000"}`}>
                     <button
                         onClick={() => {
                             setTodos(
@@ -18,7 +18,7 @@ const Articles = ({ todos, todosOriginal, setTodos }) => {
                     >
                         {e.completed && <CheckIcon />}
                     </button>
-                    <p className={`text-gray-600 grow ${e.completed && 'line-through'}`}>{e.title}</p>
+                    <p className={`grow ${e.completed && 'line-through'} `}>{e.title}</p>
                     <button className="flex-none" onClick={() => setTodos(todosOriginal.filter(todo => todo.id !== e.id))}>
                         <CrossIcon />
                     </button>
