@@ -4,18 +4,18 @@ import CrossIcon from "./Icons/CrossIcon";
 
 const Articles = ({ todos, setTodosOriginal, handleDragEnd, fill }) => {
     return (
-        <DragDropContext onDragEnd={handleDragEnd}>
-            <Droppable droppableId="droppable-id">
+        <DragDropContext onDragEnd={handleDragEnd} className="transition-none duration-0">
+            <Droppable droppableId="droppable-id" >
                 {(droppableProvider) => (
                     <div ref={droppableProvider.innerRef} {...droppableProvider.droppableProps} className="w-full">
                         {todos.map((e, index) => (
-                            <Draggable key={e.id} draggableId={e.id.toString()} index={index}>
+                            <Draggable key={e.id} draggableId={e.id.toString()} index={index} >
                                 {(draggableProvider) => (
                                     <article
                                         ref={draggableProvider.innerRef}
                                         {...draggableProvider.draggableProps}
                                         {...draggableProvider.dragHandleProps}
-                                        className={`w-full flex items-center justify-between gap-4 border-b border-b-gray-400 p-4 ${fill !== "#000" ? "bg-gray-800 text-white" : "text-gray-600"} transition-all duration-1000`}
+                                        className={`w-full flex items-center justify-between gap-4 border-b border-b-gray-400 p-4 transition-all duration-0 ${fill !== "#000" ? "bg-gray-800 text-white" : "text-gray-600 "}`}
                                     >
                                         <button
                                             onClick={() => {
