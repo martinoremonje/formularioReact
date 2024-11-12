@@ -63,7 +63,7 @@ const App = () =>{
 
   return (
     <>
-    <div className={`${fill === "#000" ? "min-h-screen bg-[url('./assets/images/bg-mobile-light.jpg')] bg-no-repeat bg-cover bg-gray-300" : "min-h-screen bg-[url('./assets/images/bg-mobile-dark.jpg')] bg-no-repeat bg-cover bg-gray-300"}`}>
+    <div className={`${fill === "#000" ? "min-h-screen bg-[url('./assets/images/bg-mobile-light.jpg')] bg-no-repeat bg-cover bg-gray-300 transition-all duration-1000" : "min-h-screen bg-[url('./assets/images/bg-mobile-dark.jpg')] bg-no-repeat bg-cover bg-gray-300 transition-all duration-1000"}`}>
 
     <Header handleFillButton={handleFillButton} fill={fill} />
 
@@ -71,7 +71,7 @@ const App = () =>{
       
       <Form handleForm={handleForm}/>
       
-      <div className="bg-white rounded-t-md [&>article]:p-4 mt-8">
+      <div className="bg-white rounded-t-md [&>article]:p-4 mt-8 ">
       <Articles todos={filteredTodos} todosOriginal={todos} setTodos={setTodos} />
       </div>
       
