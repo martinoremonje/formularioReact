@@ -20,7 +20,7 @@ const App = () =>{
 
   //CREAR UN NUEVO TODO, SETTODO PARA LA CASA CREAR EL HANDLEFORM2 Y CREAR EL INPUT
   
-  const [fill, setFill] = useState("#000");
+  const [fill, setFill] = useState("#FFFF99");
   const [todos, setTodos] = useState(initialState);
   const [filter, setFilter] = useState("all");
 
@@ -67,7 +67,7 @@ const App = () =>{
   const filteredTodos = handleFilter();
 
   const handleFillButton = () =>{
-    setFill((prev)=> (prev === "#FFF" ? "#000" : "#FFF"))
+    setFill((prev)=> (prev === "#FFF" ? "#FFFF99" : "#FFF"))
   };
 
   const handleDragEnd = (result) => {
@@ -86,7 +86,7 @@ const App = () =>{
 
   return (
     <>
-    <div className={`${fill === "#000" ? "min-h-screen bg-[url('./assets/images/bg-mobile-light.jpg')] bg-no-repeat bg-cover bg-gray-300 transition-all duration-300" : "min-h-screen bg-[url('./assets/images/bg-mobile-dark.jpg')] bg-no-repeat bg-cover bg-gray-300 transition-all duration-300"}`}>
+    <div className={`${fill === "#FFFF99" ? "min-h-screen bg-[url('./assets/images/bg-mobile-light.jpg')] bg-no-repeat bg-cover bg-gray-300 transition-all duration-300" : "min-h-screen bg-[url('./assets/images/bg-mobile-dark.jpg')] bg-no-repeat bg-cover bg-gray-300 transition-all duration-300"}`}>
 
     <Header handleFillButton={handleFillButton} fill={fill} />
 

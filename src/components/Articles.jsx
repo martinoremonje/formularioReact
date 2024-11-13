@@ -8,10 +8,10 @@ const Articles = ({ todos, todosOriginal, setTodos, fill }) => {
             <Droppable droppableId="todos">
                 {
                     (droppableProvider)=>(
-                        <div ref={droppableProvider.innerRef} {...droppableProvider.droppableProps} className={`rounded-t-md [&>article]:p-4 mt-8 ${fill === "#000" ? "bg-white" : "bg-gray-800"}`}>
+                        <div ref={droppableProvider.innerRef} {...droppableProvider.droppableProps} className={`rounded-t-md [&>article]:p-4 mt-8 ${fill === "#FFFF99" ? "bg-white" : "bg-gray-800"}`}>
             {todos.map((e, index) => (
                 <Draggable key={e.id} index={index} draggableId={`${e.id}`}>
-                    {(draggableProvider)=>(<article ref={draggableProvider.innerRef} {...draggableProvider.dragHandleProps} {...draggableProvider.draggableProps} className={`flex gap-4 border-b border-b-gray-400 ${fill !== "#000" ? "bg-gray-800 text-white" : "text-gray-600"}`}>
+                    {(draggableProvider)=>(<article ref={draggableProvider.innerRef} {...draggableProvider.dragHandleProps} {...draggableProvider.draggableProps} className={`flex gap-4 border-b border-b-gray-400 ${fill !== "#FFFF99" ? "bg-gray-800 text-white" : "text-gray-600"}`}>
                     <button
                         onClick={() => {
                             setTodos(
