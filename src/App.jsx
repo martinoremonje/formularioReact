@@ -7,6 +7,7 @@ import TodoComputed from "./components/TodoComputed";
 import Filter from "./components/Filter";
 
 const initialState = JSON.parse(localStorage.getItem("todos")) || [];
+const fillInitialState = JSON.parse(localStorage.getItem("fillMartinosApp")) || "#FFFF99"
 
 const reorder = (list, startIndex, endIndex) => {
   const result = [...list];
@@ -20,13 +21,14 @@ const App = () =>{
 
   //CREAR UN NUEVO TODO, SETTODO PARA LA CASA CREAR EL HANDLEFORM2 Y CREAR EL INPUT
   
-  const [fill, setFill] = useState("#FFFF99");
+  const [fill, setFill] = useState(fillInitialState);
   const [todos, setTodos] = useState(initialState);
   const [filter, setFilter] = useState("all");
 
   useEffect(()=>{
     localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+    localStorage.setItem("fillMartinosApp", JSON.stringify(fill))
+  }, [todos, fill]);
 
   const handleForm = (e) =>{
     e.preventDefault();
