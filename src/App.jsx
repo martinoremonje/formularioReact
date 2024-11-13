@@ -36,14 +36,14 @@ const App = () =>{
     const value = e.target.category.value;
 
     if(title.trim() == ""){
-      e.target.reset();
+      e.target.todo.value = "";
       return alert("Escribe una nueva tarea")
     };
     
 
     const isIn = todos.some(todo=>todo.title === title)
     if(isIn){
-      e.target.reset();
+      e.target.todo.value = "";
       return alert("Ya existe esa Tarea")
     }
 
@@ -54,7 +54,7 @@ const App = () =>{
       completed: false
     }
     setTodos([...todos, newTodo]);
-    e.target.reset();
+    e.target.todo.value = "";
   }
 
   const handleFilter = () =>{
