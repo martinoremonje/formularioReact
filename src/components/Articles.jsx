@@ -1,11 +1,17 @@
+import { Droppable,  Draggable} from "@hello-pangea/dnd";
 import CheckIcon from "./Icons/Check";
 import CrossIcon from "./Icons/CrossIcon"
 
 const Articles = ({ todos, todosOriginal, setTodos, fill }) => {
     return (
-        <>
+        <>  
+            <Droppable droppableId="todos">
+                {
+                    (droppableProvider)=>(
+                        <div ref={droppableProvider.innerRef} {...droppableProvider.droppableProps} className={`rounded-t-md [&>article]:p-4 mt-8 ${fill === "#000" ? "bg-white" : "bg-gray-800"}`}>
             {todos.map((e, index) => (
-                <article key={index} className={`flex gap-4 border-b border-b-gray-400 ${fill !== "#000" ? "bg-gray-800 text-white transition-all duration-1000" : "text-gray-600 transition-all duration-1000"}`}>
+                <Draggable key={e.id} index={index} draggableId={`${e.id}`}>
+                    {(draggableProvider)=>(<article ref={draggableProvider.innerRef} {...draggableProvider.dragHandleProps} {...draggableProvider.draggableProps} className={`flex gap-4 border-b border-b-gray-400 ${fill !== "#000" ? "bg-gray-800 text-white" : "text-gray-600"}`}>
                     <button
                         onClick={() => {
                             setTodos(
@@ -22,8 +28,19 @@ const Articles = ({ todos, todosOriginal, setTodos, fill }) => {
                     <button className="flex-none" onClick={() => setTodos(todosOriginal.filter(todo => todo.id !== e.id))}>
                         <CrossIcon />
                     </button>
-                </article>
+                </article>)}
+
+                </Draggable>
+                
             ))}
+            {droppableProvider.placeholder}
+        </div>
+                    )
+                }
+                
+            </Droppable>
+            
+            
         </>
     );
 };

@@ -1,3 +1,4 @@
+import { DragDropContext} from "@hello-pangea/dnd";
 import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import Articles from "./components/Articles";
@@ -6,6 +7,14 @@ import TodoComputed from "./components/TodoComputed";
 import Filter from "./components/Filter";
 
 const initialState = JSON.parse(localStorage.getItem("todos")) || [];
+
+const reorder = (list, startIndex, endIndex) => {
+  const result = [...list];
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
 
 const App = () =>{
 
@@ -61,6 +70,20 @@ const App = () =>{
     setFill((prev)=> (prev === "#FFF" ? "#000" : "#FFF"))
   };
 
+  const handleDragEnd = (result) => {
+    const { destination, source } = result;
+        if (!destination) return;
+        if (
+            source.index === destination.index &&
+            source.droppableId === destination.droppableId
+        )
+            return;
+
+        setTodos((prevTasks) =>
+            reorder(prevTasks, source.index, destination.index)
+        );
+  }
+
   return (
     <>
     <div className={`${fill === "#000" ? "min-h-screen bg-[url('./assets/images/bg-mobile-light.jpg')] bg-no-repeat bg-cover bg-gray-300 transition-all duration-1000" : "min-h-screen bg-[url('./assets/images/bg-mobile-dark.jpg')] bg-no-repeat bg-cover bg-gray-300 transition-all duration-1000"}`}>
@@ -70,10 +93,13 @@ const App = () =>{
     <main className="container mx-auto mt-8 px-4 md:max-w-xl ">
       
       <Form handleForm={handleForm} fill={fill}/>
+
+      <DragDropContext onDragEnd={handleDragEnd}>
       
-      <div className="bg-white rounded-t-md [&>article]:p-4 mt-8 ">
       <Articles todos={filteredTodos} todosOriginal={todos} setTodos={setTodos} fill={fill}/>
-      </div>
+      
+      </DragDropContext>
+      
       
       <TodoComputed todos={todos} setTodos={setTodos} fill={fill}/>
       
