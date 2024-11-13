@@ -35,14 +35,14 @@ const App = () =>{
 
     if(title.trim() == ""){
       e.target.reset();
-      return alert("Rellena el todo bro")
+      return alert("Escribe una nueva tarea")
     };
     
 
     const isIn = todos.some(todo=>todo.title === title)
     if(isIn){
       e.target.reset();
-      return alert("Ya existe ese Todo")
+      return alert("Ya existe esa Tarea")
     }
 
     const newTodo = {
