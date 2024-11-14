@@ -93,9 +93,13 @@ const App = () =>{
 
     <Header handleFillButton={handleFillButton} fill={fill} />
 
+    
+
     <main className="container mx-auto mt-8 px-4 md:max-w-xl ">
       
       <Form handleForm={handleForm} fill={fill}/>
+
+      <Filter setFilter={setFilter} filter={filter} fill={fill}/>
 
       <DragDropContext onDragEnd={handleDragEnd}>
       
@@ -106,7 +110,7 @@ const App = () =>{
       
       <TodoComputed todos={todos} setTodos={setTodos} fill={fill}/>
       
-      <Filter setFilter={setFilter} filter={filter} fill={fill}/>
+    
     
     </main>
       <footer className="mt-8 text-center">
