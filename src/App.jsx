@@ -89,7 +89,7 @@ const App = () =>{
 
   return (
     <>
-    <div className={`min-h-screen bg-no-repeat bg-cover bg-fixed  bg-gray-300 transition-all duration-300 ${fill === "#FFFF99" ? "bg-[url('./assets/images/bg-mobile-light.jpg')] " : "bg-[url('./assets/images/bg-mobile-dark.jpg')]"}`}>
+    <div className={`min-h-screen bg-no-repeat bg-cover bg-gray-300 transition-all duration-300 ${fill === "#FFFF99" ? "bg-[url('./assets/images/bg-mobile-light.jpg')] " : "bg-[url('./assets/images/bg-mobile-dark.jpg')]"}`}>
 
     <Header handleFillButton={handleFillButton} fill={fill} />
 
