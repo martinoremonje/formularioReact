@@ -1,4 +1,5 @@
 import Moon from "./../components/Icons/Moon";
+import Sun from "./Icons/Sun";
 
 const Header = ({handleFillButton, fill}) => { 
     return (
@@ -7,7 +8,7 @@ const Header = ({handleFillButton, fill}) => {
     <h1 className="uppercase text-white text-2xl font-semibold tracking-[0.5em]">
       Tareas
     </h1>
-    <button onClick={handleFillButton}><Moon fill={fill}/></button>
+    <button onClick={handleFillButton}>{fill === "#FFFF99" ? <Moon fill={fill}/> : <Sun fill={fill}></Sun>}</button>
     </div>
     
     </header>
