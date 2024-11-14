@@ -19,7 +19,8 @@ const reorder = (list, startIndex, endIndex) => {
 
 const App = () =>{
 
-  //CREAR UN NUEVO TODO, SETTODO PARA LA CASA CREAR EL HANDLEFORM2 Y CREAR EL INPUT
+  //Crear 1 vista extra para los componentes de dragAndDrop. Que se yo... un ternario que si esta en el filtro re order se muestre el componente del dragandDrop y si no que muestr el work y el home
+  
   
   const [fill, setFill] = useState(fillInitialState);
   const [todos, setTodos] = useState(initialState);
